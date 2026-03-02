@@ -55,6 +55,16 @@ export default function Home() {
                     </Link>
                 </div>
 
+                <div className="text-sm text-[#6A3D26]">
+                    For enquiries, please contact us via email:{" "}
+                    <a
+                        href="mailto:contact@kiray.org"
+                        className="underline hover:no-underline font-medium"
+                    >
+                        contact@kiray.org
+                    </a>
+                </div>
+
                 {/*/!* Donation Compliance Statement *!/*/}
                 {/*<div className="text-sm text-[#6A3D26] max-w-xl mx-auto">*/}
                 {/*    Kiray Putjung Aboriginal Corporation is endorsed as a Deductible Gift Recipient (DGR).*/}
@@ -86,6 +96,15 @@ export default function Home() {
                     </div>
                     <div>
                         Registered Charity with the Australian Charities and Not-for-profits Commission (ACNC)
+                    </div>
+                    <div>
+                        Email:{" "}
+                        <a
+                            href="mailto:contact@kiray.org"
+                            className="underline hover:no-underline"
+                        >
+                            contact@kiray.org
+                        </a>
                     </div>
                 </div>
 
