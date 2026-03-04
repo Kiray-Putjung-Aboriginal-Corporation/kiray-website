@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Navbar from "@/components/Navbar";
 
 const FACEBOOK_URL =
     "https://www.facebook.com/KirayPutjungAboriginalCorporation93";
@@ -10,7 +11,6 @@ export default function Home() {
     return (
         <div className="min-h-screen bg-[#F6E6D6] flex items-center justify-center px-6">
             <main className="max-w-3xl w-full text-center space-y-10 py-20">
-
                 {/* Header */}
                 <div className="space-y-4">
                     <h1 className="text-4xl sm:text-5xl font-semibold text-[#3B2416]">
@@ -18,9 +18,11 @@ export default function Home() {
                     </h1>
 
                     <div className="w-24 h-1 bg-[#C86B2B] mx-auto rounded-full" />
+                    <Navbar/>
 
                     <h2 className="text-xl sm:text-2xl text-[#5A3320] font-medium">
                         Our website is currently being refreshed
+                        
                     </h2>
                 </div>
 
