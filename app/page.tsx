@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
 
 const FACEBOOK_URL =
     "https://www.facebook.com/KirayPutjungAboriginalCorporation93";
@@ -18,7 +17,6 @@ export default function Home() {
                     </h1>
 
                     <div className="w-24 h-1 bg-[#C86B2B] mx-auto rounded-full" />
-                    <Navbar/>
 
                     <h2 className="text-xl sm:text-2xl text-[#5A3320] font-medium">
                         Our website is currently being refreshed
@@ -34,16 +32,16 @@ export default function Home() {
 
                 {/* Buttons */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    {/*<Link*/}
-                    {/*    href={DONATE_URL}*/}
-                    {/*    target="_blank"*/}
-                    {/*    rel="noopener noreferrer"*/}
-                    {/*    className="inline-flex items-center justify-center px-8 py-3 rounded-full*/}
-                    {/*   bg-[#3B2416] text-white shadow-md hover:shadow-lg*/}
-                    {/*   hover:bg-[#4A2C1B] transition-all duration-200 w-full sm:w-auto"*/}
-                    {/*>*/}
-                    {/*    Donate*/}
-                    {/*</Link>*/}
+                    <Link
+                        href={"https://donate.stripe.com/test_3cIdR95QS0emfFTeMr9Zm01"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center px-8 py-3 rounded-full
+                       bg-[#3B2416] text-white shadow-md hover:shadow-lg
+                       hover:bg-[#4A2C1B] transition-all duration-200 w-full sm:w-auto"
+                    >
+                        Donate
+                    </Link>
 
                     <Link
                         href={FACEBOOK_URL}
