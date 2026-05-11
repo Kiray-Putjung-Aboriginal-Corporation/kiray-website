@@ -2,38 +2,110 @@
 
 import React, {useState} from "react";
 import Link from "next/link";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle} from "@heroui/navbar";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuToggle} from "@heroui/navbar";
+import {NavbarMenuItem} from "@heroui/react";
+import Image from "next/image";
 
 export const KirayLogo = () => {
     return (
-        <div className={"bg-background text mx-auto ml-5"}>Kiray Pujung</div>
+        <div className="relative h-32 w-48 sm:h-40 sm:w-60 lg:h-45 lg:w-66.75">
+            <Image
+                src="/images/logos/kiray/KirayLogoPlaceholder.png"
+                alt="Kiray Putjung Aboriginal Corporation Logo"
+                fill
+                sizes="(max-width: 640px) 192px, (max-width: 1024px) 240px, 267px"
+                style={{
+                    objectFit: "contain",
+                    objectPosition: "left center",
+                }}
+                priority
+            />
+        </div>
     );
 };
 
 export default function SiteNavbar() {
+    const DONATE_URL = "https://donate.stripe.com/test_3cIdR95QS0emfFTeMr9Zm01";
+    
     const [isOpen, setIsOpen] = React.useState(false);
+   
     const navigationItems = [
-        "Events",
-        "About Us",
-        "Sponsors",
-        "Contact Us",
-        "Donate",
+        {label: "Home", href: "/", visible: true},
+        {label: "Events", href: "/events", visible:false},
+        {label: "About Us", href: "/about", visible: false},
+        {label: "Contact Us", href: "/contact", visible: true},
+        {label: "Sponsors", href: "/sponsors", visible: false},
+        // {label: "Donate", href: "/donate", visible: true},
+        {label: "Donate", href: DONATE_URL, visible: true},
     ]
 
     return (
-        <Navbar className="bg-background text-textLight shadow-sm">
-            <NavbarContent>
+        <Navbar
+            isMenuOpen={isOpen}
+            onMenuOpenChange={setIsOpen}
+            maxWidth="full"
+            className="bg-background text-primary"
+            classNames={{
+                wrapper: "h-[180px] sm:h-[210px] max-w-full px-3 sm:px-6 overflow-hidden",
+                menu: "top-[180px] sm:top-[210px] bg-background px-6 pt-6 gap-5 border-t border-primary/20",
+            }}
+        >
+            <NavbarContent className="w-full gap-2 sm:gap-6 justify-between">                {/* Mobile burger */}
                 <NavbarMenuToggle
                     aria-label={isOpen ? "Close menu" : "Open menu"}
-                    className="sm:hidden"/>
-                <NavbarBrand><KirayLogo/></NavbarBrand>
-            </NavbarContent>
-            
-            <NavbarContent className={isOpen ? "text-gray-light sm-flex" : "hidden"}>
-                <NavbarItem isActive>
-                    <Link href="/contact">Contect</Link>
+                    className="lg:hidden text-primary-button"
+                />
+
+                {/* Logo */}
+                <NavbarBrand className="grow justify-center items-center lg:grow-0 lg:shrink-0">
+                    <Link href="/">
+                        <KirayLogo/>
+                    </Link>
+                </NavbarBrand>
+
+
+                {/* Desktop nav links */}
+                <div className="hidden lg:flex flex-1 items-center justify-evenly gap-6">
+                    {navigationItems
+                        .filter((item) => item.label !== "Donate")
+                        .filter((item) => item.visible)
+                        .map((item) => (
+                            <NavbarItem key={item.href}>
+                                <Link
+                                    href={item.href}
+                                    className={`${item.visible ? " " : "hidden"} text-md text-textPrimary font-semibold uppercase tracking-wide `}
+                                >
+                                    {item.label}
+                                </Link>
+                            </NavbarItem>
+                        ))}
+                </div>
+
+                {/* Donate button */}
+                <NavbarItem className="flex justify-end">
+                    <Link
+                        href={DONATE_URL}
+                        className="rounded-full bg-primary-button px-5 py-2 text-sm font-semibold text-background"
+                    >
+                        Donate
+                    </Link>
                 </NavbarItem>
             </NavbarContent>
+
+            <NavbarMenu>
+                {navigationItems
+                    .filter((item) => item.visible)
+                    .map((item) => (
+                        <NavbarMenuItem key={item.href} className={item.visible ? "" : "hidden"}>
+                            <Link
+                                href={item.href}
+                                onClick={() => setIsOpen(false)}
+                            >
+                                {item.label}
+                            </Link>
+                        </NavbarMenuItem>
+                    ))}
+            </NavbarMenu>
         </Navbar>
 
     );

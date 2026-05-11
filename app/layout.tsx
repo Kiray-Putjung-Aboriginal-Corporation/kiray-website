@@ -26,19 +26,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-       <Providers>
-       <SiteNavbar/> 
-       <main>{children}</main>
-       </Providers>
+    return (
+        <html lang="en" className="bg-background overflow-x-hidden">
+        <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen w-full bg-background overflow-x-hidden`}
+        >
+        <Providers>
+            <div className="min-h-screen w-full bg-background">
+                <SiteNavbar />
+
+                <main className="w-full">
+                    {children}
+                </main>
+            </div>
+        </Providers>
         <Analytics />
         <SpeedInsights />
-
-      </body>
-    </html>
-  );
+        </body>
+        </html>
+    );
 }

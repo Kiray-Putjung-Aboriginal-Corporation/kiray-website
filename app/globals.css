@@ -5,23 +5,32 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background:  #ea580c;
+  --primaryButton: #005F6B;
+  --secondaryButton: #00A7B5;
+  --tertiaryButton: #A64B1A;
+  --altButton: #D89A3D;
+  --background:  #F5EBDD;
   --backgroundAlt: #7c2d12;
   --foreground: #171717;
 }
 
 /*Dark mode*/
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #7c2d12;
-    --backgroundAlt: #7c2d12;
-    --foreground: #ea580c;
-  }
-}
+/*@media (prefers-color-scheme: dark) {*/
+/*  :root {*/
+/*    --background: #7c2d12;*/
+/*    --backgroundAlt: #7c2d12;*/
+/*    --foreground: #ea580c;*/
+/*  }*/
+/*}*/
 
 @theme inline {
   --color-background: var(--background);
   --color-backgroundAlt: var(--backgroundAlt);
+
+  --color-primary-button: var(--primaryButton);
+  --color-secondary-button: var(--secondaryButton);
+  --color-tertiary-button: var(--tertiaryButton);
+  --color-alt-button: var(--altButton);
 
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -29,7 +38,7 @@
 
   --color-mint-500: oklch(0.72 0.11 178);
 
-  --color-textPrimary: #2B1E17;
+  --color-textPrimary: #2B1B14;
   --color-textSecondary: #5A3E2B;
   --color-textMuted: #8C6E58;
   --color-textLight: #F9F6F1;
