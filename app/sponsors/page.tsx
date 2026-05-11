@@ -1,6 +1,8 @@
-﻿import {Button} from "@heroui/button";
-import Link from "next/link";
+﻿import { redirect } from "next/navigation";
 
-export default function (){
-    return <Link href={"/"} color="primary">Contact buttons</Link>;
+
+
+export default function () {
+    redirect("/");
+
 }
