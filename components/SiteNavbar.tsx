@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export const KirayLogo = () => {
     return (
-        <div className="relative h-32 w-48 sm:h-40 sm:w-60 lg:h-45 lg:w-66.75">
+        <div className="lg:hidden relative h-32 w-48 sm:h-40 sm:w-60 lg:h-45 lg:w-66.75">
             <Image
                 src="/images/logos/kiray/KirayLogoPlaceholder.png"
                 alt="Kiray Putjung Aboriginal Corporation Logo"
@@ -25,18 +25,17 @@ export const KirayLogo = () => {
 };
 
 export default function SiteNavbar() {
-    const DONATE_URL = "https://donate.stripe.com/test_3cIdR95QS0emfFTeMr9Zm01";
-    
+
+
     const [isOpen, setIsOpen] = React.useState(false);
-   
+
     const navigationItems = [
         {label: "Home", href: "/", visible: true},
-        {label: "Events", href: "/events", visible:false},
+        {label: "Events", href: "/events", visible: false},
         {label: "About Us", href: "/about", visible: false},
         {label: "Contact Us", href: "/contact", visible: true},
         {label: "Sponsors", href: "/sponsors", visible: false},
-        // {label: "Donate", href: "/donate", visible: true},
-        {label: "Donate", href: DONATE_URL, visible: true},
+        {label: "Donate", href: "/donate", visible: true},
     ]
 
     return (
@@ -65,7 +64,7 @@ export default function SiteNavbar() {
 
 
                 {/* Desktop nav links */}
-                <div className="hidden lg:flex flex-1 items-center justify-evenly gap-6">
+                <div className="hidden lg:flex flex-1 content-start justify-evenly gap-6">
                     {navigationItems
                         .filter((item) => item.label !== "Donate")
                         .filter((item) => item.visible)
@@ -73,7 +72,11 @@ export default function SiteNavbar() {
                             <NavbarItem key={item.href}>
                                 <Link
                                     href={item.href}
-                                    className={`${item.visible ? " " : "hidden"} text-md text-textPrimary font-semibold uppercase tracking-wide `}
+                                    className={`${item.visible ? "" : "hidden"}
+                                    ${item.label == "Donate" ? "rounded-full bg-primary-button px-5 py-2 font-semibold text-background"
+                                        : "text-2xl text-textPrimary font-semibold uppercase tracking-wide"}
+                                      `}
+                                    
                                 >
                                     {item.label}
                                 </Link>
@@ -84,8 +87,8 @@ export default function SiteNavbar() {
                 {/* Donate button */}
                 <NavbarItem className="flex justify-end">
                     <Link
-                        href={DONATE_URL}
-                        className="rounded-full bg-primary-button px-5 py-2 text-sm font-semibold text-background"
+                        href={"/donate"}
+                        className="rounded-full bg-primary-button px-5 py-2 text-2xl font-semibold text-background"
                     >
                         Donate
                     </Link>

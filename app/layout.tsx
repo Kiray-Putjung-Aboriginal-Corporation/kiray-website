@@ -32,7 +32,7 @@ export default function RootLayout({
             className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen w-full bg-background overflow-x-hidden`}
         >
         <Providers>
-            <div className="min-h-screen w-full bg-background">
+            <div className="min-h-screen w-full bg-background font-sans">
                 <SiteNavbar />
 
                 <main className="w-full">
