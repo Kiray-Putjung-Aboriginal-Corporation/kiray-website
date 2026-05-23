@@ -7,10 +7,10 @@ import Link from "next/link";
 export default function Donate() {
 
     const oneTimeDonationLinks = [
-        {label: "$10", href: process.env.NEXT_PUBLIC_STRIPE_10 ?? "#", visible: true},
-        {label: "$25", href: process.env.NEXT_PUBLIC_STRIPE_25 ?? "#", visible: true},
-        {label: "$50", href: process.env.NEXT_PUBLIC_STRIPE_50 ?? "#", visible: true},
-        {label: "$100", href: process.env.NEXT_PUBLIC_STRIPE_100 ?? "#", visible: true},
+        {label: "$10", href: process.env.NEXT_PUBLIC_STRIPE_DONATE_10 ?? "#", visible: true},
+        {label: "$25", href: process.env.NEXT_PUBLIC_STRIPE_DONATE_25 ?? "#", visible: true},
+        {label: "$50", href: process.env.NEXT_PUBLIC_STRIPE_DONATE_50 ?? "#", visible: true},
+        {label: "$100", href: process.env.NEXT_PUBLIC_STRIPE_DONATE_100 ?? "#", visible: true},
         {label: "Custom", href: process.env.NEXT_PUBLIC_STRIPE_DONATE_CUSTOM ?? "#", visible: true},
     ]
 
@@ -57,7 +57,7 @@ export default function Donate() {
                     {/*    onPress={() => SwapOption("subscription")}*/}
                     {/*>Monthly</Button>*/}
                 </div>
-
+            
                 <div className={"flex items-center justify-center pb-5 "}>
                     <h2 className={"text-xl"}>Please note that the payment page will open another tab.</h2>
                 </div>
