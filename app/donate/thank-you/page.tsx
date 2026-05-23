@@ -46,12 +46,12 @@
                         Return Home
                     </a>
 
-                    <a
-                        href="/events"
-                        className="rounded-full border border-primary-button px-6 py-3 font-semibold text-textPrimary transition hover:bg-secondary-button hover:text-textLight"
-                    >
-                        View Events
-                    </a>
+                    {/*<a*/}
+                    {/*    href="/events"*/}
+                    {/*    className="rounded-full border border-primary-button px-6 py-3 font-semibold text-textPrimary transition hover:bg-secondary-button hover:text-textLight"*/}
+                    {/*>*/}
+                    {/*    View Events*/}
+                    {/*</a>*/}
 
                     <a
                         href="/contact"

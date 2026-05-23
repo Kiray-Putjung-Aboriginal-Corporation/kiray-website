@@ -7,11 +7,11 @@ import Link from "next/link";
 export default function Donate() {
 
     const oneTimeDonationLinks = [
-        {label: "$10", href: "https://donate.stripe.com/test_00w28r4MO8KS9hv9s79Zm00", visible: true},
-        {label: "$25", href: "https://donate.stripe.com/test_3cIdR9gvw1iqctH6fV9Zm02", visible: true},
-        {label: "$50", href: "https://donate.stripe.com/test_28E28rbbc6CKeBP33J9Zm03", visible: true},
-        {label: "$100", href: "https://donate.stripe.com/test_8x26oH3IK0emctH0VB9Zm04", visible: true},
-        {label: "Custom", href: "https://donate.stripe.com/test_3cIdR95QS0emfFTeMr9Zm01", visible: true},
+        {label: "$10", href: process.env.NEXT_PUBLIC_STRIPE_10 ?? "#", visible: true},
+        {label: "$25", href: process.env.NEXT_PUBLIC_STRIPE_25 ?? "#", visible: true},
+        {label: "$50", href: process.env.NEXT_PUBLIC_STRIPE_50 ?? "#", visible: true},
+        {label: "$100", href: process.env.NEXT_PUBLIC_STRIPE_100 ?? "#", visible: true},
+        {label: "Custom", href: process.env.NEXT_PUBLIC_STRIPE_DONATE_CUSTOM ?? "#", visible: true},
     ]
 
     const subscriptionsDonationLinks = [
@@ -39,42 +39,46 @@ export default function Donate() {
                 <h1 className={"text-3xl font-bold text-textPrimary pb-5"}>Donate to Kiray Putjung</h1>
                 <p className={"text-xl px-2 t text-center"}>Your donations help us to fund our cultural programs and community events.</p>
             </div>
+            
+                <div className="items-center justify-center py-5">
+                    {/*todo:reactivate when api updated*/}
+                    {/*<h3 className={"text-xl text-textPrimary pb-5"}>Select frequency:</h3>*/}
+                    <h3 className={"text-xl text-textPrimary pb-5"}>Frequency:</h3>
 
-            <div className="items-center justify-center py-5">
-               <h3 className={"text-xl text-textPrimary pb-5"}>Select frequency:</h3>
-                
-                <Button
-                    className={`text-textLight px-10 text-2xl mx-5 my-2
+                    <Button
+                        className={`text-textLight px-10 text-2xl mx-5 my-2
                      ${activeOption == "onceOff" ? "bg-primary-button text-textLight" : "bg-gray-50 text-textPrimary"} `}
-                    onPress={() => SwapOption("onceOff")}
-                >
-                    One-Time</Button>
-                <Button
-                    className={` text-textLight px-10 text-2xl mx-5 my-2
-                     ${activeOption == "subscription" ? "bg-primary-button text-textLight" : "bg-gray-50 text-textPrimary"} `}
-                    onPress={() => SwapOption("subscription")}
-                >Monthly</Button>
-            </div>
+                        onPress={() => SwapOption("onceOff")}
+                    >
+                        One-Time</Button>
+                    {/*<Button*/}
+                    {/*    className={` text-textLight px-10 text-2xl mx-5 my-2*/}
+                    {/*     ${activeOption == "subscription" ? "bg-primary-button text-textLight" : "bg-gray-50 text-textPrimary"} `}*/}
+                    {/*    onPress={() => SwapOption("subscription")}*/}
+                    {/*>Monthly</Button>*/}
+                </div>
 
-            <div className={"flex items-center justify-center pb-5 "}>
-                <h2 className={"text-xl"}>Please note that the payment page will open another tab.</h2>
-            </div>
+                <div className={"flex items-center justify-center pb-5 "}>
+                    <h2 className={"text-xl"}>Please note that the payment page will open another tab.</h2>
+                </div>
 
-            <div className={"flex flex-col lg:flex-row items-center justify-center gap-4 pb-2"}>
-                {optionToShow.filter(
-                    (donationOption) => donationOption.visible)
-                    .map((donationOption) => (
-                        <Link
-                            key={donationOption.label}
-                            href={donationOption.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="rounded-full bg-secondary-button py-2 px-5 text-xl text-textLight"
-                        >
-                            {donationOption.label}
-                        </Link>
-                    ))}
-            </div>
+                <div className={"flex flex-col lg:flex-row items-center justify-center gap-4 pb-2"}>
+                    {optionToShow.filter(
+                        (donationOption) => donationOption.visible)
+                        .map((donationOption) => (
+                            <Link
+                                key={donationOption.label}
+                                href={donationOption.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="rounded-full bg-secondary-button py-2 px-5 text-xl text-textLight hover:bg-alt-button"
+                            >
+                                {donationOption.label}
+                            </Link>
+                        ))}
+                </div>
+
+
 
             <div className={"py-2"}>
                 <p> Kiray Putjung Aboriginal Corporation is endorsed as a Deductible Gift Recipient (DGR).</p>
