@@ -8,6 +8,7 @@ export const eventType = defineType({
     {name: "details", title: "Event details", default: true},
     {name: "location", title: "Location"},
     {name: "registration", title: "Registration"},
+    {name: "sponsors", title: "Sponsor acknowledgement"},
     {name: "afterEvent", title: "After the event"},
   ],
   fields: [
@@ -256,6 +257,27 @@ export const eventType = defineType({
             ? true
             : "Add at least one registration button or turn registration off.";
         }),
+    }),
+    defineField({
+      name: "sponsorAcknowledgement",
+      title: "Sponsor acknowledgement",
+      description: "Optional event-specific thanks shown above the selected sponsor logos.",
+      type: "blockContent",
+      group: "sponsors",
+    }),
+    defineField({
+      name: "eventSponsors",
+      title: "Event sponsors",
+      description: "Select existing sponsors to recognise them on this event page.",
+      type: "array",
+      group: "sponsors",
+      of: [
+        defineArrayMember({
+          type: "reference",
+          to: [{type: "sponsor"}],
+        }),
+      ],
+      validation: (Rule) => Rule.unique(),
     }),
     defineField({
       name: "recap",

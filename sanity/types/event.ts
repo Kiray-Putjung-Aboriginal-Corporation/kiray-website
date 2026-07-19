@@ -1,4 +1,5 @@
 import type {PortableTextBlock} from "@portabletext/types";
+import type {Sponsor} from "@/sanity/types/sponsor";
 
 export interface EventImage {
   _key?: string;
@@ -53,6 +54,8 @@ export interface KirayEvent {
   registrationEnabled?: boolean;
   registrationClosingDate?: string;
   registrationLinks?: EventRegistrationLink[];
+  sponsorAcknowledgement?: PortableTextBlock[];
+  eventSponsors?: Sponsor[];
   recap?: PortableTextBlock[];
   gallery?: EventImage[];
 }

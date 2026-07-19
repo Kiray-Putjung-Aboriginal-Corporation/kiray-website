@@ -19,6 +19,34 @@ export const eventCardProjection = `
   address
 `;
 
+export const sponsorProjection = `
+  _id,
+  name,
+  logo {
+    ...,
+    asset->
+  },
+  websiteUrl,
+  sortOrder,
+  showOnSponsorsPage,
+  "tier": tier->{
+    _id,
+    name,
+    description,
+    sortOrder
+  }
+`;
+
+export const activeSponsorsQuery = `
+  *[
+    _type == "sponsor" &&
+    showOnSponsorsPage != false &&
+    defined(logo.asset)
+  ] {
+    ${sponsorProjection}
+  } | order(tier.sortOrder asc, sortOrder asc, name asc)
+`;
+
 export const upcomingEventsQuery = `
   *[
     _type == "event" &&
@@ -87,6 +115,10 @@ export const eventBySlugQuery = `
     registrationEnabled,
     registrationClosingDate,
     registrationLinks,
+    sponsorAcknowledgement,
+    "eventSponsors": eventSponsors[]->{
+      ${sponsorProjection}
+    } | order(tier.sortOrder asc, sortOrder asc, name asc),
     recap,
     gallery[] {
       ...,

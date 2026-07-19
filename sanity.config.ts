@@ -3,7 +3,7 @@ import {defineConfig} from "sanity";
 import {structureTool} from "sanity/structure";
 import {dataset, projectId} from "./sanity/env";
 import {schemaTypes} from "./sanity/schemaTypes";
-import {eventStructure} from "./sanity/structure";
+import {websiteStructure} from "./sanity/structure";
 
 export default defineConfig({
   name: "default",
@@ -11,7 +11,7 @@ export default defineConfig({
   projectId,
   dataset,
   plugins: [
-    structureTool({structure: eventStructure}),
+    structureTool({structure: websiteStructure}),
     visionTool(),
   ],
   schema: {

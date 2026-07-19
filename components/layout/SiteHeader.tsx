@@ -12,6 +12,7 @@ const navigationItems = [
   {label: "Events", href: "/events"},
   {label: "About us", href: "/about"},
   {label: "Our services", href: "/our-services"},
+  {label: "Sponsors", href: "/sponsors"},
   {label: "Contact", href: "/contact"},
 ];
 
@@ -34,7 +35,7 @@ export default function SiteHeader() {
             />
           </Link>
 
-          <nav aria-label="Main navigation" className="hidden items-center gap-6 lg:flex xl:gap-8">
+          <nav aria-label="Main navigation" className="hidden items-center gap-4 lg:flex xl:gap-6">
             {navigationItems.map((item) => {
               const isActive = pathname === item.href;
               return (

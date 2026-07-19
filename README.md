@@ -1,6 +1,6 @@
 # Kiray Putjung website
 
-The public website for Kiray Putjung Aboriginal Corporation. It uses Next.js, TypeScript and Tailwind CSS, with Sanity managing event content.
+The public website for Kiray Putjung Aboriginal Corporation. It uses Next.js, TypeScript and Tailwind CSS, with Sanity managing events and sponsors.
 
 ## Local website
 
@@ -43,6 +43,18 @@ The first deployment asks the signed-in Sanity administrator to choose the Studi
 6. Preview the entry, then publish it.
 
 Events automatically move from Upcoming to Previous after their end time. A previous event can be updated with an event recap and gallery.
+
+## Sponsors
+
+Sponsor records are reused across the public Sponsors page and individual event acknowledgements.
+
+1. Create **Sponsor tiers** first, such as Principal Partner, Major Sponsor or Community Partner.
+2. Set each tier's order using spaced numbers such as 10, 20 and 30. Lower numbers appear first.
+3. Create each **Sponsor** once, adding its logo, alternative text, website link, tier and order within that tier.
+4. Keep **Show on Sponsors page** enabled for current sponsors. Turning it off removes the sponsor from the directory without removing its acknowledgement from historical events.
+5. In an Event, open **Sponsor acknowledgement**, select the event sponsors and optionally add event-specific thank-you text.
+
+The order within a tier is controlled by the sponsor's numeric **Order within tier** value. This overrides alphabetical ordering; names are only used as a tie-breaker when two sponsors have the same number.
 
 ## Registration and reminders
 

@@ -5,6 +5,7 @@ import {notFound} from "next/navigation";
 import {EventBody} from "@/components/events/EventBody";
 import {EventGallery} from "@/components/events/EventGallery";
 import {EventRegistrationLinks} from "@/components/events/EventRegistrationLinks";
+import {EventSponsorAcknowledgement} from "@/components/events/EventSponsorAcknowledgement";
 import {EventStatusBadge} from "@/components/events/EventStatusBadge";
 import {ReminderSignupPanel} from "@/components/events/ReminderSignupPanel";
 import {ButtonLink} from "@/components/ui/ButtonLink";
@@ -105,6 +106,11 @@ export default async function EventPage({params}: EventPageProps) {
                   <EventBody value={event.recap} />
                 </section>
               ) : null}
+
+              <EventSponsorAcknowledgement
+                acknowledgement={event.sponsorAcknowledgement}
+                sponsors={event.eventSponsors}
+              />
 
               <EventGallery images={event.gallery} />
             </div>

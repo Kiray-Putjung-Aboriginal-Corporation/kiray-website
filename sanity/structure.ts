@@ -1,6 +1,6 @@
 import type {StructureResolver} from "sanity/structure";
 
-export const eventStructure: StructureResolver = (S) =>
+export const websiteStructure: StructureResolver = (S) =>
   S.list()
     .title("Kiray Website")
     .items([
@@ -25,4 +25,7 @@ export const eventStructure: StructureResolver = (S) =>
             .defaultOrdering([{field: "startDate", direction: "desc"}]),
         ),
       S.documentTypeListItem("event").title("All events"),
+      S.divider(),
+      S.documentTypeListItem("sponsor").title("Sponsors"),
+      S.documentTypeListItem("sponsorTier").title("Sponsor tiers"),
     ]);
