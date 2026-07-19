@@ -259,18 +259,41 @@ export const eventType = defineType({
         }),
     }),
     defineField({
+      name: "sponsorAcknowledgementEnabled",
+      title: "Show sponsor acknowledgement",
+      description:
+        "Turn this on only when this event should have a sponsor acknowledgement section on the website.",
+      type: "boolean",
+      group: "sponsors",
+      initialValue: false,
+    }),
+    defineField({
+      name: "useCurrentSponsors",
+      title: "Automatically use current sponsors",
+      description:
+        "Uses every sponsor currently visible on the Sponsors page, in the same order. An ordered list below takes priority when provided.",
+      type: "boolean",
+      group: "sponsors",
+      initialValue: true,
+      hidden: ({document}) => !document?.sponsorAcknowledgementEnabled,
+    }),
+    defineField({
       name: "sponsorAcknowledgement",
-      title: "Sponsor acknowledgement",
-      description: "Optional event-specific thanks shown above the selected sponsor logos.",
+      title: "Acknowledgement message",
+      description: "Optional event-specific thanks shown above the sponsor logos.",
       type: "blockContent",
       group: "sponsors",
+      hidden: ({document}) => !document?.sponsorAcknowledgementEnabled,
     }),
     defineField({
       name: "eventSponsors",
-      title: "Event sponsors",
-      description: "Select existing sponsors to recognise them on this event page.",
+      title: "Sponsor list and order override",
+      description:
+        "Optional. Add sponsors and drag them into the exact order for this event. This fixed list takes priority over the automatic current-sponsors list and is recommended for previous events.",
       type: "array",
       group: "sponsors",
+      hidden: ({document}) => !document?.sponsorAcknowledgementEnabled,
+      options: {sortable: true},
       of: [
         defineArrayMember({
           type: "reference",

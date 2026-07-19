@@ -117,6 +117,7 @@ export default async function EventPage({params}: EventPageProps) {
               ) : null}
 
               <EventSponsorAcknowledgement
+                enabled={event.sponsorAcknowledgementEnabled}
                 acknowledgement={event.sponsorAcknowledgement}
                 sponsors={event.eventSponsors}
               />

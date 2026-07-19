@@ -54,6 +54,8 @@ export interface KirayEvent {
   registrationEnabled?: boolean;
   registrationClosingDate?: string;
   registrationLinks?: EventRegistrationLink[];
+  sponsorAcknowledgementEnabled?: boolean;
+  useCurrentSponsors?: boolean;
   sponsorAcknowledgement?: PortableTextBlock[];
   eventSponsors?: Sponsor[];
   recap?: PortableTextBlock[];

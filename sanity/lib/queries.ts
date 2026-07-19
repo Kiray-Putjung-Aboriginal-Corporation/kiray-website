@@ -115,10 +115,23 @@ export const eventBySlugQuery = `
     registrationEnabled,
     registrationClosingDate,
     registrationLinks,
+    sponsorAcknowledgementEnabled,
+    useCurrentSponsors,
     sponsorAcknowledgement,
-    "eventSponsors": eventSponsors[]->{
-      ${sponsorProjection}
-    } | order(tier.sortOrder asc, sortOrder asc, name asc),
+    "eventSponsors": select(
+      sponsorAcknowledgementEnabled != true => [],
+      defined(eventSponsors[0]) => eventSponsors[]->{
+        ${sponsorProjection}
+      },
+      useCurrentSponsors == true => *[
+        _type == "sponsor" &&
+        showOnSponsorsPage != false &&
+        defined(logo.asset)
+      ] {
+        ${sponsorProjection}
+      } | order(tier.sortOrder asc, sortOrder asc, name asc),
+      []
+    ),
     recap,
     gallery[] {
       ...,

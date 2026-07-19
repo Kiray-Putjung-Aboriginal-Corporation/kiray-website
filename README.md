@@ -52,9 +52,14 @@ Sponsor records are reused across the public Sponsors page and individual event 
 2. Set each tier's order using spaced numbers such as 10, 20 and 30. Lower numbers appear first.
 3. Create each **Sponsor** once, adding its logo, alternative text, website link, tier and order within that tier.
 4. Keep **Show on Sponsors page** enabled for current sponsors. Turning it off removes the sponsor from the directory without removing its acknowledgement from historical events.
-5. In an Event, open **Sponsor acknowledgement**, select the event sponsors and optionally add event-specific thank-you text.
+5. In an Event, open **Sponsor acknowledgement** and turn on **Show sponsor acknowledgement** only when the section should appear.
+6. Leave **Automatically use current sponsors** on to use the live Sponsors-page list and order.
+7. For a fixed historical list or a different order, add sponsors to **Sponsor list and order override** and drag them into the desired order. The override list takes priority.
+8. Optionally add an event-specific **Acknowledgement message** above the logos.
 
 The order within a tier is controlled by the sponsor's numeric **Order within tier** value. This overrides alphabetical ordering; names are only used as a tie-breaker when two sponsors have the same number.
+
+An event's manual sponsor list keeps its drag-and-drop order. Previous events should normally use this fixed list so their acknowledgements do not change when the current Sponsors page changes.
 
 ## Registration and reminders
 

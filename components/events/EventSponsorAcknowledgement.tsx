@@ -4,17 +4,19 @@ import type {PortableTextBlock} from "@portabletext/types";
 import type {Sponsor} from "@/sanity/types/sponsor";
 
 interface EventSponsorAcknowledgementProps {
+  enabled?: boolean;
   acknowledgement?: PortableTextBlock[];
   sponsors?: Sponsor[];
 }
 
 export function EventSponsorAcknowledgement({
+  enabled,
   acknowledgement,
   sponsors,
 }: EventSponsorAcknowledgementProps) {
   const availableSponsors = sponsors?.filter((sponsor) => sponsor.logo?.asset) || [];
 
-  if (!acknowledgement?.length && availableSponsors.length === 0) {
+  if (!enabled || (!acknowledgement?.length && availableSponsors.length === 0)) {
     return null;
   }
 
