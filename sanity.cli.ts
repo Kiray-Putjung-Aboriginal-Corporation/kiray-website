@@ -3,4 +3,7 @@ import {dataset, projectId} from "./sanity/env";
 
 export default defineCliConfig({
   api: {projectId, dataset},
+  deployment: {
+    appId: "smvmksaa3dtzvkdm1dtuxd51",
+  },
 });
