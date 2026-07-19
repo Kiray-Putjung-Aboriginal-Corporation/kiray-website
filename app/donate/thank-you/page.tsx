@@ -1,66 +1,24 @@
-﻿export default function ThankYou() {
-    return (
-        <main className="min-h-screen bg-background px-6 text-textPrimary">
-            <section className="mx-auto max-w-3xl text-center space-y-8">
-                <div className="space-y-4">
-                    <p className="text-sm font-semibold uppercase tracking-[0.25em] text-textSecondary">
-                        Donation received
-                    </p>
+import type {Metadata} from "next";
+import {ButtonLink} from "@/components/ui/ButtonLink";
+import {Container} from "@/components/ui/Container";
 
-                    <h1 className="text-4xl text-secondary-button font-bold sm:text-5xl">
-                        Thank you for your support
-                    </h1>
+export const metadata: Metadata = {title: "Thank you"};
 
-                    <p className="mx-auto max-w-2xl text-lg text-textPrimary">
-                        Thank you for supporting Kiray Putjung Aboriginal Corporation.
-                        Your donation helps us continue our work supporting community,
-                        culture, and future generations.
-                    </p>
-                </div>
-
-                <div className="rounded-2xl border border-primary-button bg-white/5 p-6 text-left shadow-sm">
-                    <h2 className="text-2xl text-center font-semibold text-textPrimary">
-                        What happens next?
-                    </h2>
-
-                    <ul className="mt-4 space-y-3 text-textPrimary">
-                        <li>
-                            You should receive a donation receipt by email shortly.
-                        </li>
-                        <li>
-                            If your donation was made on behalf of a business or organisation,
-                            we may contact you about sponsor recognition.
-                        </li>
-                        <li>
-                            You can return to the website to learn more about our programs,
-                            events, and community work.
-                        </li>
-                    </ul>
-                </div>
-
-                <div className="flex flex-col justify-center gap-4 sm:flex-row">
-                    <a
-                        href="/"
-                        className="rounded-full bg-primary-button px-6 py-3 font-semibold text-textLight transition hover:opacity-50"
-                    >
-                        Return Home
-                    </a>
-
-                    {/*<a*/}
-                    {/*    href="/events"*/}
-                    {/*    className="rounded-full border border-primary-button px-6 py-3 font-semibold text-textPrimary transition hover:bg-secondary-button hover:text-textLight"*/}
-                    {/*>*/}
-                    {/*    View Events*/}
-                    {/*</a>*/}
-
-                    <a
-                        href="/contact"
-                        className="rounded-full border border-primary-button px-6 py-3 font-semibold text-textPrimary transition hover:bg-secondary-button hover:text-textLight"
-                    >
-                        Contact Us
-                    </a>
-                </div>
-            </section>
-        </main>
-    );
+export default function ThankYouPage() {
+  return (
+    <section className="bg-background py-20 sm:py-28">
+      <Container>
+        <div className="mx-auto max-w-3xl rounded-[2rem] border border-border bg-surface p-8 text-center shadow-[0_20px_60px_rgba(69,47,31,0.08)] sm:p-12">
+          <div className="mx-auto grid size-20 place-items-center rounded-full bg-primary-button text-3xl font-black text-textLight" aria-hidden="true">✓</div>
+          <p className="mt-6 text-xs font-extrabold uppercase tracking-[0.18em] text-accent">Donation received</p>
+          <h1 className="mt-3 text-4xl font-black text-textPrimary sm:text-5xl">Thank you for your support</h1>
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-textSecondary">Your donation helps Kiray Putjung continue supporting community, culture and future generations. You should receive a donation receipt by email shortly.</p>
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <ButtonLink href="/">Return home</ButtonLink>
+            <ButtonLink href="/contact" variant="outline">Contact us</ButtonLink>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
 }
