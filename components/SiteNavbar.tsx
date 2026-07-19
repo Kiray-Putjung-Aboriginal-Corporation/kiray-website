@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import React, {useState} from "react";
+import React from "react";
 import Link from "next/link";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuToggle} from "@heroui/navbar";
 import {NavbarMenuItem} from "@heroui/react";
@@ -113,4 +113,3 @@ export default function SiteNavbar() {
 
     );
 }
-
