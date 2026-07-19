@@ -5,6 +5,7 @@ import {notFound} from "next/navigation";
 import {EventBody} from "@/components/events/EventBody";
 import {EventGallery} from "@/components/events/EventGallery";
 import {EventRegistrationLinks} from "@/components/events/EventRegistrationLinks";
+import {EventSponsorAcknowledgement} from "@/components/events/EventSponsorAcknowledgement";
 import {EventStatusBadge} from "@/components/events/EventStatusBadge";
 import {ReminderSignupPanel} from "@/components/events/ReminderSignupPanel";
 import {ButtonLink} from "@/components/ui/ButtonLink";
@@ -94,9 +95,18 @@ export default async function EventPage({params}: EventPageProps) {
                 </div>
               )}
 
-              <div className="rounded-[1.75rem] border border-border bg-surface px-6 py-3 sm:px-8">
+              <section
+                className="rounded-[1.75rem] border border-border bg-surface p-6 sm:p-8"
+                aria-labelledby="event-about-heading"
+              >
+                <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-accent">
+                  Event overview
+                </p>
+                <h2 id="event-about-heading" className="mt-2 text-3xl font-extrabold text-textPrimary">
+                  About this event
+                </h2>
                 <EventBody value={event.body} />
-              </div>
+              </section>
 
               {isPreviousEvent && event.recap?.length ? (
                 <section className="mt-10 rounded-[1.75rem] border border-border bg-surface p-6 sm:p-8" aria-labelledby="event-recap-heading">
@@ -105,6 +115,12 @@ export default async function EventPage({params}: EventPageProps) {
                   <EventBody value={event.recap} />
                 </section>
               ) : null}
+
+              <EventSponsorAcknowledgement
+                enabled={event.sponsorAcknowledgementEnabled}
+                acknowledgement={event.sponsorAcknowledgement}
+                sponsors={event.eventSponsors}
+              />
 
               <EventGallery images={event.gallery} />
             </div>

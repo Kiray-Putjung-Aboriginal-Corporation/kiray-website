@@ -8,6 +8,7 @@ export const eventType = defineType({
     {name: "details", title: "Event details", default: true},
     {name: "location", title: "Location"},
     {name: "registration", title: "Registration"},
+    {name: "sponsors", title: "Sponsor acknowledgement"},
     {name: "afterEvent", title: "After the event"},
   ],
   fields: [
@@ -256,6 +257,50 @@ export const eventType = defineType({
             ? true
             : "Add at least one registration button or turn registration off.";
         }),
+    }),
+    defineField({
+      name: "sponsorAcknowledgementEnabled",
+      title: "Show sponsor acknowledgement",
+      description:
+        "Turn this on only when this event should have a sponsor acknowledgement section on the website.",
+      type: "boolean",
+      group: "sponsors",
+      initialValue: false,
+    }),
+    defineField({
+      name: "useCurrentSponsors",
+      title: "Automatically use current sponsors",
+      description:
+        "Uses every sponsor currently visible on the Sponsors page, in the same order. An ordered list below takes priority when provided.",
+      type: "boolean",
+      group: "sponsors",
+      initialValue: true,
+      hidden: ({document}) => !document?.sponsorAcknowledgementEnabled,
+    }),
+    defineField({
+      name: "sponsorAcknowledgement",
+      title: "Acknowledgement message",
+      description: "Optional event-specific thanks shown above the sponsor logos.",
+      type: "blockContent",
+      group: "sponsors",
+      hidden: ({document}) => !document?.sponsorAcknowledgementEnabled,
+    }),
+    defineField({
+      name: "eventSponsors",
+      title: "Sponsor list and order override",
+      description:
+        "Optional. Add sponsors and drag them into the exact order for this event. This fixed list takes priority over the automatic current-sponsors list and is recommended for previous events.",
+      type: "array",
+      group: "sponsors",
+      hidden: ({document}) => !document?.sponsorAcknowledgementEnabled,
+      options: {sortable: true},
+      of: [
+        defineArrayMember({
+          type: "reference",
+          to: [{type: "sponsor"}],
+        }),
+      ],
+      validation: (Rule) => Rule.unique(),
     }),
     defineField({
       name: "recap",
