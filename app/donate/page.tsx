@@ -1,92 +1,53 @@
-﻿"use client";
+import type {Metadata} from "next";
+import {ButtonLink} from "@/components/ui/ButtonLink";
+import {Container} from "@/components/ui/Container";
+import {PageHero} from "@/components/ui/PageHero";
 
-import {Button} from "@heroui/button";
-import {useState} from "react";
-import Link from "next/link";
+export const metadata: Metadata = {title: "Donate"};
 
-export default function Donate() {
+const donationLinks = [
+  {label: "$10", href: process.env.NEXT_PUBLIC_STRIPE_DONATE_10 ?? "#"},
+  {label: "$25", href: process.env.NEXT_PUBLIC_STRIPE_DONATE_25 ?? "#"},
+  {label: "$50", href: process.env.NEXT_PUBLIC_STRIPE_DONATE_50 ?? "#"},
+  {label: "$100", href: process.env.NEXT_PUBLIC_STRIPE_DONATE_100 ?? "#"},
+  {label: "Custom amount", href: process.env.NEXT_PUBLIC_STRIPE_DONATE_CUSTOM ?? "#"},
+];
 
-    const oneTimeDonationLinks = [
-        {label: "$10", href: process.env.NEXT_PUBLIC_STRIPE_DONATE_10 ?? "#", visible: true},
-        {label: "$25", href: process.env.NEXT_PUBLIC_STRIPE_DONATE_25 ?? "#", visible: true},
-        {label: "$50", href: process.env.NEXT_PUBLIC_STRIPE_DONATE_50 ?? "#", visible: true},
-        {label: "$100", href: process.env.NEXT_PUBLIC_STRIPE_DONATE_100 ?? "#", visible: true},
-        {label: "Custom", href: process.env.NEXT_PUBLIC_STRIPE_DONATE_CUSTOM ?? "#", visible: true},
-    ]
-
-    const subscriptionsDonationLinks = [
-        {label: "$5 p/m", href: "https://donate.stripe.com/test_bJeeVd4MO3qyctHeMr9Zm05", visible: true},
-        {label: "$10 p/m", href: "https://donate.stripe.com/test_bJe8wPgvwaT0alz5bR9Zm06", visible: true},
-        {label: "$20 p/m", href: "https://donate.stripe.com/test_fZu6oH2EG3qy2T70VB9Zm07", visible: true},
-        {label: "$50 p/m", href: "https://donate.stripe.com/test_3cI14n3IK0em0KZawb9Zm09", visible: true},
-        {label: "$100 p/m", href: "https://donate.stripe.com/test_bJedR96UW8KSalzcEj9Zm0a", visible: true},
-    ]
-
-    const [activeOption, setActiveOption] = useState<"onceOff" | "subscription">("onceOff");
-
-    const optionToShow =
-        activeOption === "onceOff"
-            ? oneTimeDonationLinks
-            : subscriptionsDonationLinks;
-
-    const SwapOption = ((optionSelected: "onceOff" | "subscription") => {
-        setActiveOption(optionSelected);
-    })
-
-    return (
-        <div className="justify-center align-middle flex flex-col px-2 text-center w-full">
-            <div className="flex flex-col items-center">
-                <h1 className={"text-3xl font-bold text-textPrimary pb-5"}>Donate to Kiray Putjung</h1>
-                <p className={"text-xl px-2 t text-center"}>Your donations help us to fund our cultural programs and community events.</p>
+export default function DonatePage() {
+  return (
+    <>
+      <PageHero
+        eyebrow="Donate"
+        title="Support Kiray Putjung"
+        description="Your donation helps support cultural programs, community events and opportunities for community."
+      />
+      <section className="bg-background py-16 sm:py-20">
+        <Container className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="rounded-[2rem] border border-border bg-surface p-8 shadow-[0_20px_60px_rgba(69,47,31,0.08)] sm:p-10">
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-accent">One-time donation</p>
+            <h2 className="mt-3 text-3xl font-extrabold text-textPrimary">Choose an amount</h2>
+            <p className="mt-3 text-textSecondary">The secure payment page will open in a new tab.</p>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+              {donationLinks.map((option) => (
+                <ButtonLink key={option.label} href={option.href} external variant={option.label === "Custom amount" ? "secondary" : "primary"} className="w-full">
+                  {option.label}
+                </ButtonLink>
+              ))}
             </div>
-            
-                <div className="items-center justify-center py-5">
-                    {/*todo:reactivate when api updated*/}
-                    {/*<h3 className={"text-xl text-textPrimary pb-5"}>Select frequency:</h3>*/}
-                    <h3 className={"text-xl text-textPrimary pb-5"}>Frequency:</h3>
+          </div>
 
-                    <Button
-                        className={`text-textLight px-10 text-2xl mx-5 my-2
-                     ${activeOption == "onceOff" ? "bg-primary-button text-textLight" : "bg-gray-50 text-textPrimary"} `}
-                        onPress={() => SwapOption("onceOff")}
-                    >
-                        One-Time</Button>
-                    {/*<Button*/}
-                    {/*    className={` text-textLight px-10 text-2xl mx-5 my-2*/}
-                    {/*     ${activeOption == "subscription" ? "bg-primary-button text-textLight" : "bg-gray-50 text-textPrimary"} `}*/}
-                    {/*    onPress={() => SwapOption("subscription")}*/}
-                    {/*>Monthly</Button>*/}
-                </div>
-            
-                <div className={"flex items-center justify-center pb-5 "}>
-                    <h2 className={"text-xl"}>Please note that the payment page will open another tab.</h2>
-                </div>
-
-                <div className={"flex flex-col lg:flex-row items-center justify-center gap-4 pb-2"}>
-                    {optionToShow.filter(
-                        (donationOption) => donationOption.visible)
-                        .map((donationOption) => (
-                            <Link
-                                key={donationOption.label}
-                                href={donationOption.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="rounded-full bg-secondary-button py-2 px-5 text-xl text-textLight hover:bg-alt-button"
-                            >
-                                {donationOption.label}
-                            </Link>
-                        ))}
-                </div>
-
-
-
-            <div className={"py-2"}>
-                <p> Kiray Putjung Aboriginal Corporation is endorsed as a Deductible Gift Recipient (DGR).</p>
-                <p className={"py-2"}> Donations of $2 or more are tax deductible in Australia.</p>
-                <p className={"py-2"}>No goods or services are provided in exchange for donations.</p>
-            </div>
-
-
-        </div>
-    )
-} 
+          <aside className="rounded-[2rem] bg-primary-button p-8 text-textLight sm:p-10">
+            <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-ochre-light">Tax deductible</p>
+            <h2 className="mt-4 text-2xl font-extrabold">Donation information</h2>
+            <ul className="mt-6 space-y-4 leading-7 text-teal-50">
+              <li>Kiray Putjung Aboriginal Corporation is endorsed as a Deductible Gift Recipient.</li>
+              <li>Donations of $2 or more are tax deductible in Australia.</li>
+              <li>No goods or services are provided in exchange for donations.</li>
+              <li>A donation receipt will be issued by email.</li>
+            </ul>
+          </aside>
+        </Container>
+      </section>
+    </>
+  );
+}

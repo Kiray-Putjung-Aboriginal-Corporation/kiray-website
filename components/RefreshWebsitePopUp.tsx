@@ -10,11 +10,12 @@ const RefreshWebsitePopUp = () => {
     const [wasShown, setWasShown] = useState(true);
     
     useEffect(() => {
-        const hasAcknowledged = localStorage.getItem(POP_UP_STORAGE_KEY);
-        
-        if (hasAcknowledged !== "true"){
-            setWasShown(false);
-        }
+        const updateVisibility = window.setTimeout(() => {
+            const hasAcknowledged = localStorage.getItem(POP_UP_STORAGE_KEY);
+            setWasShown(hasAcknowledged === "true");
+        }, 0);
+
+        return () => window.clearTimeout(updateVisibility);
     }, []);
     
     const handleAcknowledgment = () => {
