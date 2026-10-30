@@ -85,7 +85,7 @@ export default async function EventPage({params}: EventPageProps) {
           )}
 
           <div className="mt-10 grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
-            <div>
+            <div className="min-w-0">
               {event.eventStatus !== "scheduled" && (
                 <div className="mb-8 rounded-[1.5rem] border-2 border-accent bg-surface p-6">
                   <EventStatusBadge status={event.eventStatus} />
