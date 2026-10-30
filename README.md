@@ -44,6 +44,14 @@ The first deployment asks the signed-in Sanity administrator to choose the Studi
 
 Events automatically move from Upcoming to Previous after their end time. A previous event can be updated with an event recap and gallery.
 
+### Event photos
+
+In **After the event**, add photos to **Event gallery**, give each photo alternative text and an optional caption, then drag them into the desired order. The first photo opens by default on the website. The gallery displays whenever it contains published photos; the editor tab does not delay publication until the event ends.
+
+Visitors can use Previous/Next, select a thumbnail or swipe across the photo. Photos keep their full proportions, including portrait images. Selecting the main photo opens a larger viewer; Close or Escape returns to the gallery. Arrow keys and Home/End work while a gallery control has focus. Photos never advance automatically. A single photo has no navigation controls, and an empty gallery is hidden.
+
+When reviewing a gallery change, check a mix of portrait and landscape photos on mobile and desktop, photo order and captions, keyboard navigation, Escape and focus returning after closing the larger viewer. Also check an event with one photo and one with no photos.
+
 ## Sponsors
 
 Sponsor records are reused across the public Sponsors page and individual event acknowledgements.
