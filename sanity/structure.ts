@@ -26,6 +26,15 @@ export const websiteStructure: StructureResolver = (S) =>
         ),
       S.documentTypeListItem("event").title("All events"),
       S.divider(),
+      S.listItem()
+        .title("Programs")
+        .schemaType("program")
+        .child(
+          S.documentTypeList("program")
+            .title("Programs")
+            .defaultOrdering([{field: "sortOrder", direction: "asc"}, {field: "name", direction: "asc"}]),
+        ),
+      S.divider(),
       S.documentTypeListItem("sponsor").title("Sponsors"),
       S.documentTypeListItem("sponsorTier").title("Sponsor tiers"),
     ]);

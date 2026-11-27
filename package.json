@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "test": "node --import tsx --test tests/*.test.ts",
     "studio:dev": "sanity dev",
+    "programs:seed": "sanity exec scripts/seed-programs.ts --with-user-token --",
     "studio:deploy": "sanity deploy",
     "studio:build": "sanity build studio-dist"
   },
@@ -41,7 +43,9 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "groq-js": "1.30.3",
     "tailwindcss": "^4",
+    "tsx": "4.23.1",
     "typescript": "^5"
   }
 }

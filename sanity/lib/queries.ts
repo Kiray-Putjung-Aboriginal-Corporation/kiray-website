@@ -1,3 +1,19 @@
+export const visibleProgramsQuery = `
+  *[
+    _type == "program" &&
+    showOnWebsite == true &&
+    !(_id in path("drafts.**")) &&
+    !(_id in path("versions.**")) &&
+    defined(name) &&
+    defined(description)
+  ] | order(sortOrder asc, name asc, _id asc) {
+    _id,
+    name,
+    description,
+    sortOrder
+  }
+`;
+
 export const eventCardProjection = `
   _id,
   title,
