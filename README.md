@@ -1,6 +1,6 @@
 # Kiray Putjung website
 
-The public website for Kiray Putjung Aboriginal Corporation. It uses Next.js, TypeScript and Tailwind CSS, with Sanity managing events and sponsors.
+The public website for Kiray Putjung Aboriginal Corporation. It uses Next.js, TypeScript and Tailwind CSS, with Sanity managing events, programs and sponsors.
 
 ## Local website
 
@@ -68,6 +68,36 @@ Sponsor records are reused across the public Sponsors page and individual event 
 The order within a tier is controlled by the sponsor's numeric **Order within tier** value. This overrides alphabetical ordering; names are only used as a tie-breaker when two sponsors have the same number.
 
 An event's manual sponsor list keeps its drag-and-drop order. Previous events should normally use this fixed list so their acknowledgements do not change when the current Sponsors page changes.
+
+## Programs
+
+Open **Programs** in Sanity Studio to manage the cards on **Our services** (`/our-services`). The existing page layout and introductory wording are retained.
+
+1. Choose **Create** and enter the **Program name** and plain-text **Description**.
+2. Set **Display order** using spaced numbers such as 10, 20 and 30. Lower numbers appear first; equal numbers are sorted by name.
+3. Keep **Show on website** on and publish when the content is approved. Saving a draft alone does not change the website.
+4. To edit a program, change its details and publish the changes.
+5. To remove a program from the list, turn **Show on website** off and **publish**. The record stays in Studio.
+6. To restore a program, turn the switch on and publish again. Unpublished documents also stay off the website. Permanent deletion is not needed for routine removal.
+
+The website reads published, visible programs only. It caches the list for 60 seconds and refreshes it as visitors request the page. After publishing, allow a minute, then reload; the first request after the cache expires may still show the previous version while it refreshes. No website deployment is needed for routine content changes. If every program is hidden, the page shows an empty-list message; it does not restore the old hard-coded cards. A failed Sanity request has a separate temporary-unavailability message.
+
+### First-time rollout
+
+Complete this sequence before promoting the website change to production:
+
+1. Build and deploy the updated Studio using the existing Sanity administrator account. This adds the **Programs** editor; it does not publish program content.
+2. Confirm the intended project and dataset in `sanity.cli.ts` and its environment configuration. Preview and Production may use different datasets; verify both rather than assuming they match.
+3. In a terminal already signed in with `npx sanity login`, preview the one-time import:
+
+   ```bash
+   npm run programs:seed -- --dry-run
+   ```
+
+4. After checking the target shown by the dry run, run `npm run programs:seed`. It copies the four original cards, unchanged, into **unpublished drafts**. Stable IDs and an existing-document check preserve both published records and existing drafts when rerun. This is an initial import only; do not use it to restore intentionally deleted records.
+5. Review and publish the four programs in Studio. The public read client never needs a write token; do not copy a Sanity login token into the website environment.
+6. In the website preview, verify the four cards and their order. Test adding a program, publishing an edit, hiding it and restoring it. Use a separate test dataset where available; changes to the shared production dataset can affect any site using it.
+7. Check the empty list and temporary-error displays, long text, mobile and desktop widths, keyboard navigation and contrast. Only then review the feature PR into `dev` and the separately approved production release.
 
 ## Registration and reminders
 
